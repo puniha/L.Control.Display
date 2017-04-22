@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>L.Control.display Demo</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin=""/>
+    <link rel="stylesheet" href="../dist/L.Control.Display.css" />
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
+    <script src="../dist/L.Control.Display.js"></script>
+    <style>
+        html,
+        body,
+        #map { height: 100%; width:100%; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        var map = L.map('map', {
+            center: [33.590241, 130.421222],
+            zoom: 15,
+            zoomControl: false
+        });
+
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution : '&copy; <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var disp = L.control.display().addTo(map);
+        disp.show("test", {fontSize: "17px", backgroundColor:"#33ff00"});
+
+        var disp2 = L.control.display({fontSize: "17px", backgroundColor:"#33ff00"}).addTo(map);
+        disp2.show("test2");
+
+        var disp3 = L.control.display({backgroundColor:"#ffff00"}).addTo(map);
+
+        map.on("click",function(){disp.show("clcik!!");disp2.show("click!!");disp3.show("click!!")});
+
+    </script>
+</body>
+</html>
